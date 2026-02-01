@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdventHealth — Enterprise Clinical AI</title>
+    <meta name="description" content="HIPAA-compliant clinical AI deployment. Enterprise healthcare.">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #1a1a2e;
+            --text-secondary: #64748b;
+            --blue: #0066cc;
+            --blue-light: #3b82f6;
+            --blue-dark: #1d4ed8;
+            --blue-pale: #eff6ff;
+            --green: #22c55e;
+            --green-pale: #f0fdf4;
+            --purple: #7c3aed;
+            --border: rgba(0, 102, 204, 0.1);
+            --shadow: 0 4px 24px rgba(0, 102, 204, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 102, 204, 0.15);
+            --radius: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Raleway', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--blue); }
+
+        .tier-badge {
+            padding: 6px 14px;
+            background: var(--green-pale);
+            color: var(--green);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 24px 80px;
+            background: linear-gradient(180deg, var(--blue-pale) 0%, var(--bg) 100%);
+        }
+
+        .hero-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--blue);
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Compliance Cards */
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+
+        .compliance-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .compliance-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .compliance-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--blue);
+            margin-bottom: 4px;
+        }
+
+        .compliance-status {
+            font-size: 12px;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* Infrastructure Section */
+        .infra-section {
+            padding: 80px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .infra-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .infra-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .infra-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .infra-card h3 span {
+            font-size: 24px;
+        }
+
+        .infra-list {
+            list-style: none;
+        }
+
+        .infra-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .infra-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check {
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        /* Constraints Section */
+        .constraints-section {
+            padding: 80px 24px;
+            background: var(--bg-alt);
+        }
+
+        .constraints-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius);
+            padding: 48px;
+            box-shadow: var(--shadow);
+        }
+
+        .constraint-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .constraint-item {
+            padding: 16px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .constraint-item p {
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .constraint-item strong {
+            color: var(--blue);
+        }
+
+        /* Integration Banner */
+        .integration-banner {
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .integration-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            border-radius: var(--radius);
+            padding: 48px;
+            color: white;
+        }
+
+        .integration-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .integration-desc {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 32px;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .partner-logo {
+            padding: 16px 32px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .footer-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: var(--bg-alt);
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .footer-badge span {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .compliance-grid { grid-template-columns: 1fr; }
+            .infra-grid { grid-template-columns: 1fr; }
+            .constraint-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 36px; }
+            .partner-logos { flex-direction: column; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">
+                <div class="logo-icon">⚕</div>
+                <span class="logo-text">AdventHealth</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#infrastructure">Infrastructure</a></li>
+                <li><a href="#compliance">Compliance</a></li>
+                <li><a href="#integrations">Integrations</a></li>
+            </ul>
+            <span class="tier-badge">ENTERPRISE</span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-badge">🏥 ENTERPRISE HEALTHCARE</div>
+            <h1>Clinical AI at <span>Scale</span></h1>
+            <p>HIPAA-compliant clinical AI deployment within AdventHealth infrastructure. Every integration governed.</p>
+
+            <div class="compliance-grid">
+                <div class="compliance-card">
+                    <div class="compliance-icon">🔒</div>
+                    <div class="compliance-label">HIPAA Privacy</div>
+                    <div class="compliance-status">✓ Compliant</div>
+                </div>
+                <div class="compliance-card">
+                    <div class="compliance-icon">🛡️</div>
+                    <div class="compliance-label">HIPAA Security</div>
+                    <div class="compliance-status">✓ Compliant</div>
+                </div>
+                <div class="compliance-card">
+                    <div class="compliance-icon">📋</div>
+                    <div class="compliance-label">Florida State</div>
+                    <div class="compliance-status">✓ Compliant</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="infra-section" id="infrastructure">
+        <div class="section-header">
+            <div class="section-eyebrow">Enterprise Infrastructure</div>
+            <div class="section-title">Secure Deployment</div>
+        </div>
+
+        <div class="infra-grid">
+            <div class="infra-card">
+                <h3><span>☁️</span> Cloud Infrastructure</h3>
+                <ul class="infra-list">
+                    <li><span class="check">✓</span> AdventHealth Azure tenant only</li>
+                    <li><span class="check">✓</span> Data residency guaranteed</li>
+                    <li><span class="check">✓</span> SOC monitoring integration</li>
+                    <li><span class="check">✓</span> 7-year audit retention</li>
+                </ul>
+            </div>
+            <div class="infra-card">
+                <h3><span>🔐</span> Access Control</h3>
+                <ul class="infra-list">
+                    <li><span class="check">✓</span> Active Directory authentication</li>
+                    <li><span class="check">✓</span> Role-based access control</li>
+                    <li><span class="check">✓</span> MFA enforcement</li>
+                    <li><span class="check">✓</span> Session management</li>
+                </ul>
+            </div>
+            <div class="infra-card">
+                <h3><span>🏥</span> Clinical Integration</h3>
+                <ul class="infra-list">
+                    <li><span class="check">✓</span> Epic EHR integration</li>
+                    <li><span class="check">✓</span> FHIR R4 standards</li>
+                    <li><span class="check">✓</span> DICOM imaging support</li>
+                    <li><span class="check">✓</span> Clinical validation pipeline</li>
+                </ul>
+            </div>
+            <div class="infra-card">
+                <h3><span>📊</span> Operations</h3>
+                <ul class="infra-list">
+                    <li><span class="check">✓</span> AdventHealth IR procedures</li>
+                    <li><span class="check">✓</span> Approved APIs only</li>
+                    <li><span class="check">✓</span> Change management</li>
+                    <li><span class="check">✓</span> Continuous monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="constraints-section" id="compliance">
+        <div class="constraints-card">
+            <div class="section-header">
+                <div class="section-eyebrow">Governance</div>
+                <div class="section-title">Operating Constraints</div>
+            </div>
+
+            <div class="constraint-grid">
+                <div class="constraint-item">
+                    <p>All systems <strong>MUST</strong> be deployed within AdventHealth infrastructure.</p>
+                </div>
+                <div class="constraint-item">
+                    <p>All patient data <strong>MUST</strong> remain within AdventHealth Azure tenant.</p>
+                </div>
+                <div class="constraint-item">
+                    <p>All integrations <strong>MUST</strong> use AdventHealth-approved APIs.</p>
+                </div>
+                <div class="constraint-item">
+                    <p>All clinical AI <strong>MUST</strong> be validated before production use.</p>
+                </div>
+                <div class="constraint-item">
+                    <p>All access <strong>MUST</strong> be authenticated via Active Directory.</p>
+                </div>
+                <div class="constraint-item">
+                    <p>All audit logs <strong>MUST</strong> be retained per HIPAA requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="integration-banner" id="integrations">
+        <div class="integration-card">
+            <div class="integration-title">Powered by CANONIC</div>
+            <div class="integration-desc">255-bit DETROS governance ensuring compliant clinical AI deployment</div>
+            <div class="partner-logos">
+                <div class="partner-logo">Epic Systems</div>
+                <div class="partner-logo">Azure Healthcare</div>
+                <div class="partner-logo">CANONIC Foundation</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>ADVENTHEALTH | ENTERPRISE | MED</p>
+        <div class="footer-badge">
+            DETROS Compliance: <span>255-bit</span> | Tier: <span>ENTERPRISE (63)</span>
+        </div>
+    </footer>
+</body>
+</html>
